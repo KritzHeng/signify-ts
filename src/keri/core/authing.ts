@@ -106,17 +106,17 @@ export class Authenticater {
             keyid: this._csig.verfer.qb64,
         });
 
-        console.log(
-            this._csig, {
-                name: 'signify',
-                method,
-                path,
-                headers,
-                fields,
-                alg: 'ed25519',
-                keyid: this._csig.verfer.qb64,
-            }
-        )
+        // console.log(
+        //     this._csig, {
+        //         name: 'signify',
+        //         method,
+        //         path,
+        //         headers,
+        //         fields,
+        //         alg: 'ed25519',
+        //         keyid: this._csig.verfer.qb64,
+        //     }
+        // )
         header.forEach((value, key) => {
             headers.append(key, value);
         });

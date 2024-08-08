@@ -106,6 +106,7 @@ export function siginput(
     items.push(`"@signature-params: ${params}"`);
 
     const ser = items.join('\n');
+    console.log("ser: ", ser)
     const sig = signer.sign(b(ser));
 
     return [

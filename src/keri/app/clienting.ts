@@ -258,7 +258,7 @@ export class SignifyClient {
             keeper.signers[0],
             keeper.signers[0].verfer
         );
-        console.log('authenticator', authenticator);
+        // console.log('authenticator', authenticator);
         console.log(keeper.signers[0],
             keeper.signers[0].verfer);
 
