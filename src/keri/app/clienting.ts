@@ -1,3 +1,4 @@
+import { csc } from 'mathjs';
 import { Authenticater } from '../core/authing';
 import { HEADER_SIG_TIME } from '../core/httping';
 import { ExternalModule, KeyManager } from '../core/keeping';
@@ -274,11 +275,12 @@ export class SignifyClient {
             new URL(url).pathname
         );
         req.headers = signed_headers;
-        
+        const csig = keeper.signers[0];
+        const verfer = keeper.signers[0].verfer
         return {
             req: new Request(url, req),
-            csig: keeper.signers[0],
-            verfer: keeper.signers[0].verfer
+            csig: csig.raw,
+            verfer: verfer.raw
 
         };
     }
