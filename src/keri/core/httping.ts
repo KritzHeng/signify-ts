@@ -106,12 +106,14 @@ export function siginput(
     items.push(`"@signature-params: ${params}"`);
 
     const ser = items.join('\n');
+    console.log("ser: ", ser)
     console.log("ser: ", JSON.stringify(ser))
     const sig = signer.sign(b(ser));
     console.log("ser: ", b(ser))
     console.log("sig: ", JSON.stringify(sig))
     console.log("sig: ", sig)
     console.log("sig qb64: ", sig.qb64)
+    console.log(`sid: ${serializeDictionary(sid as Dictionary)}`)
     return [
         new Map<string, string>([
             [HEADER_SIG_INPUT, `${serializeDictionary(sid as Dictionary)}`],
