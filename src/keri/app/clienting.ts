@@ -249,7 +249,7 @@ export class SignifyClient {
         aidName: string,
         url: string,
         req: RequestInit
-    ): Promise<Request> {
+    ): Promise<any> {
         const hab = await this.identifiers().get(aidName);
         const keeper = this.manager!.get(hab);
 
@@ -257,6 +257,9 @@ export class SignifyClient {
             keeper.signers[0],
             keeper.signers[0].verfer
         );
+        console.log('authenticator', authenticator);
+        console.log(keeper.signers[0],
+            keeper.signers[0].verfer);
 
         const headers = new Headers(req.headers);
         headers.set('Signify-Resource', hab['prefix']);
@@ -264,15 +267,20 @@ export class SignifyClient {
             HEADER_SIG_TIME,
             new Date().toISOString().replace('Z', '000+00:00')
         );
-
+        
         const signed_headers = authenticator.sign(
             new Headers(headers),
             req.method ?? 'GET',
             new URL(url).pathname
         );
         req.headers = signed_headers;
+        
+        return {
+            req: new Request(url, req),
+            csig: keeper.signers[0],
+            verfer: keeper.signers[0].verfer
 
-        return new Request(url, req);
+        };
     }
 
     /**
