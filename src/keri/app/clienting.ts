@@ -259,8 +259,8 @@ export class SignifyClient {
             keeper.signers[0].verfer
         );
         // console.log('authenticator', authenticator);
-        console.log(keeper.signers[0],
-            keeper.signers[0].verfer);
+        // console.log(keeper.signers[0],
+        //     keeper.signers[0].verfer);
 
         const headers = new Headers(req.headers);
         headers.set('Signify-Resource', hab['prefix']);
@@ -277,12 +277,17 @@ export class SignifyClient {
         req.headers = signed_headers;
         const csig = keeper.signers[0];
         const verfer = keeper.signers[0].verfer
-        return {
-            req: new Request(url, req),
-            csig: csig.raw,
-            verfer: verfer.raw
 
-        };
+        // output byte format 
+        console.log('csig', csig);
+        console.log('verfer', verfer);
+        // return {
+        //     req: new Request(url, req),
+        //     csig: csig.raw,
+        //     verfer: verfer.raw
+
+        // };
+        return new Request(url, req);   
     }
 
     /**
