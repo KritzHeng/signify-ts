@@ -20,6 +20,16 @@ export function normalize(header: string) {
     return header.trim();
 }
 
+function Uint8ArrayToHex(sig: any): string {
+    // Convert the Uint8Array to a hex string
+    const hexString = Array.from(sig.raw)
+        .map((byte: any) => '\\x' + byte.toString(16).padStart(2, '0'))
+        .join('');
+
+    let byteFormat = `b'${hexString}'`;
+    return byteFormat;
+}
+
 export interface SiginputArgs {
     name: string;
     method: string;
@@ -109,10 +119,16 @@ export function siginput(
     console.log("ser: ", ser)
     console.log("ser: ", JSON.stringify(ser))
     const sig = signer.sign(b(ser));
-    console.log("ser: ", b(ser))
-    console.log("sig: ", JSON.stringify(sig))
-    console.log("sig: ", sig)
+    // console.log("ser: ", b(ser))
+    // console.log("sig: ", JSON.stringify(sig))
+    // console.log("sig: ", sig)
+    const sig_hexstring = Uint8ArrayToHex(sig);
+    console.log("sig_hexstring: ", sig_hexstring)
     console.log("sig qb64: ", sig.qb64)
+    const verfer = signer.verfer;
+    console.log("verfer: ", verfer.qb64)
+    let verferHexString = Uint8ArrayToHex(verfer);
+    console.log("verferHexString: ", verferHexString)
     console.log(`sid: ${serializeDictionary(sid as Dictionary)}`)
     return [
         new Map<string, string>([
