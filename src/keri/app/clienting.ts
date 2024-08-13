@@ -281,13 +281,13 @@ export class SignifyClient {
         // output byte format 
         console.log('csig', csig);
         console.log('verfer', verfer);
-        // return {
-        //     req: new Request(url, req),
-        //     csig: csig.raw,
-        //     verfer: verfer.raw
+        return {
+            req: new Request(url, req),
+            csig: csig.raw,
+            verfer: verfer.raw
 
-        // };
-        return new Request(url, req);   
+        };
+        // return new Request(url, req);   
     }
 
     /**
